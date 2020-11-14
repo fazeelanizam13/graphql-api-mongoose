@@ -1,35 +1,27 @@
 const mongoose = require('mongoose')
 
+const { ObjectId, String } = mongoose.Schema.Types
+
 const wordSchema = new mongoose.Schema({
-  word: {
-    type: String,
-    required: true,
-  },
-  meaning: {
-    type: String,
-    required: true,
-  },
+  word: String,
+  meaning: String,
   group: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: ObjectId,
     ref: 'group',
   },
 })
 
 const groupSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+  name: String,
   words: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: ObjectId,
       ref: 'word',
     },
   ],
 })
 
 module.exports = {
-  word: mongoose.model('word', wordSchema),
-  group: mongoose.model('group', groupSchema)
+  Word: mongoose.model('word', wordSchema),
+  Group: mongoose.model('group', groupSchema)
 }

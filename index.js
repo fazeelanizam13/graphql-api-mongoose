@@ -1,31 +1,26 @@
-const { ApolloServer } = require('apollo-server-express')
 const express = require('express')
+const { graphqlHTTP } = require('express-graphql')
 const mongoose = require('mongoose')
-const typeDefs = require('./schema')
+const schema = require('./schema')
 const resolvers = require('./resolvers')
-const { word, group } = require('./models')
 
 const app = express()
 
-const server = new ApolloServer({
-  typeDefs: typeDefs,
-  resolvers,
-  context: () => {
-    return {
-      models: {
-        word,
-        group,
-      },
-    }
-  },
-})
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema: schema,
+    rootValue: resolvers,
+    graphiql: true,
+  })
+)
 
-server.applyMiddleware({ app, path: '/graphql' });
-
-app.listen(5000, () => {
-  mongoose.connect(
-    'mongodb://localhost:27017/graphql', 
-    { useNewUrlParser: true, useUnifiedTopology: true }
+mongoose
+  .connect(
+    "mongodb://localhost/sparkwords", 
+    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
   )
-  console.log(`Server ready at port 5000`)
-})
+  .then(() => app.listen(5000, console.log("Server is running")))
+  .catch(error => {
+    throw error
+  })

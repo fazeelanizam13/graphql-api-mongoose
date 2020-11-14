@@ -1,40 +1,33 @@
-const { gql } = require('apollo-server')
+const { buildSchema } = require("graphql")
 
-const typeDefs = gql`
+module.exports = buildSchema(`
   type Word {
-    id: ID!
-    word: String!
+    _id: ID
+    word: String
     meaning: String
-    group: Group!
+    group: Group
   }
   
   type Group {
-    id: ID!
-    name: String!
-    words: [Word!]
+    _id: ID
+    name: String
+    words: [Word]
   }
 
   type Query {
-    words: [Word!]
-    groups: [Group!]
-    word (id: ID!): Word
-    group (id: ID!): Group
-  }
-
-  input WordInput {
-    word: String!
-    meaning: String
+    words: [Word]
+    groups: [Group]
+    word (id: ID): Word
+    group (id: ID): Group
   }
   
   type Mutation {
-    addWord(word: String!, meaning: String): Word!
-    # editWord(id: ID!, word: String!, meaning: String): Word!
-    # deleteWord(id: ID!): Word!
+    addWord(word: String, meaning: String, group: ID): Word
+    # editWord(id: ID, word: String, meaning: String): Word
+    # deleteWord(id: ID): Word
 
-    # addGroup(name: String!, words: [WordInput!]): Group!
-    # editGroup(id: ID!, name: String!): Group!
-    # deleteGroup(id: ID!): Group!
+    addGroup(name: String, words: [ID]): Group
+    # editGroup(id: ID, name: String): Group
+    # deleteGroup(id: ID): Group
   }
-`
-
-module.exports = typeDefs
+`)
