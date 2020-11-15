@@ -20,14 +20,22 @@ module.exports = buildSchema(`
     word (id: ID): Word
     group (id: ID): Group
   }
+
+  input GroupInput {
+    _id: ID
+    name: String
+  }
   
   type Mutation {
-    addWord(word: String, meaning: String, group: ID): Word
-    # editWord(id: ID, word: String, meaning: String): Word
-    # deleteWord(id: ID): Word
+    addGroup(name: String): Group
+    addNewWordToGroup(word: String, meaning: String, group: ID): Word
+    
+    addNewWordToNewGroup(word: String, meaning: String, input: GroupInput): Word
 
-    addGroup(name: String, words: [ID]): Group
-    # editGroup(id: ID, name: String): Group
-    # deleteGroup(id: ID): Group
+    removeGroup(id: ID): Group
+    removeWordFromGroup(id: ID): Group
+
+    editWord(id: ID, word: String, meaning: String, group: ID): Word
+    editGroupName(id: ID, name: String): Group
   }
 `)
