@@ -17,7 +17,7 @@ app.use(
 
 mongoose
   .connect(
-    "mongodb://localhost/sparkwords", 
+    "mongodb://localhost/database", 
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
   )
   .then(() => app.listen(5000, console.log("Server is running")))
