@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 
 const { ObjectId, String } = mongoose.Schema.Types
 
@@ -7,7 +7,7 @@ const wordSchema = new mongoose.Schema({
   meaning: String,
   group: {
     type: ObjectId,
-    ref: 'group',
+    ref: "group",
   },
 })
 
@@ -16,12 +16,12 @@ const groupSchema = new mongoose.Schema({
   words: [
     {
       type: ObjectId,
-      ref: 'word',
+      ref: "word",
     },
   ],
 })
 
 module.exports = {
-  Word: mongoose.model('word', wordSchema),
-  Group: mongoose.model('group', groupSchema)
+  Word: mongoose.model("word", wordSchema),
+  Group: mongoose.model("group", groupSchema),
 }
