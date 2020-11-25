@@ -2,7 +2,6 @@ const { getWords, getWord, getGroups, getGroup } = require("./queries")
 const {
   addGroup,
   addNewWordToGroup,
-  addNewWordToNewGroup,
   removeGroup,
   removeWordFromGroup,
   editWord,
@@ -16,7 +15,6 @@ const resolvers = {
   group: getGroup,
   addGroup: addGroup,
   addNewWordToGroup: addNewWordToGroup,
-  addNewWordToNewGroup: addNewWordToNewGroup,
   removeGroup: removeGroup,
   removeWordFromGroup: removeWordFromGroup,
   editWord: editWord,

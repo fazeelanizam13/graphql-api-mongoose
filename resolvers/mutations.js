@@ -25,33 +25,6 @@ async function addNewWordToGroup({ word, meaning, group }) {
 
   return newWordResult
 }
-async function addNewWordToNewGroup({ word, meaning, input: { name } }) {
-  // creates new word for a new group
-  const a = new Word({
-    // create new word
-    word: word,
-    meaning: meaning,
-  })
-  const newWord = await a.save() // save new word
-
-  const b = new Group({ name }) // create new group
-  const newGroup = await b.save() // save new group
-
-  const c = await Word.findByIdAndUpdate(
-    // assign new group to new word
-    { _id: newWord._id },
-    { group: newGroup._id }
-  )
-
-  const d = await Group.findByIdAndUpdate(
-    // add new word to new group
-    { _id: newGroup._id },
-    { $push: { words: newWord._id } }
-  )
-
-  const result = await Word.findById({ _id: newWord._id }).populate("group")
-  return result
-}
 async function removeGroup({ id }) {
   // deletes group with its words
   const oldData = await Group.findById({ _id: id })
@@ -116,7 +89,6 @@ async function editGroupName({ id, name }) {
 module.exports = {
   addGroup,
   addNewWordToGroup,
-  addNewWordToNewGroup,
   removeGroup,
   removeWordFromGroup,
   editWord,

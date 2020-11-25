@@ -11,7 +11,6 @@ Queries and mutations on this API reflect possible operations one may need to pe
 * <code>getGroup</code>
 * <code>addGroup</code>
 * <code>addNewWordToGroup</code>
-* <code>addNewWordToNewGroup</code>
 * <code>removeGroup</code>
 * <code>removeWordFromGroup</code>
 * <code>editWord</code>
