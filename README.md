@@ -10,17 +10,8 @@ Queries and mutations on this API reflect possible operations one may need to pe
 * <code>word(id: ID): Word</code>
 * <code>group(id: ID): Group</code>
 * <code>addGroup(name: String): Group</code>
-* <code>addNewWordToGroup(
-word: String,
-meaning: String,
-group: ID
-): Word</code>
+* <code>addNewWordToGroup(word: String, meaning: String, group: ID): Word</code>
 * <code>removeGroup(id: ID): Group</code>
 * <code>removeWordFromGroup(id: ID): Group</code>
-* <code>editWord(
-id: ID,
-word: String,
-meaning: String,
-group: ID
-): Word</code>
+* <code>editWord(id: ID, word: String, meaning: String, group: ID): Word</code>
 * <code>editGroupName(id: ID, name: String): Group</code>
