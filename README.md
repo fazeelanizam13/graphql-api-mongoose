@@ -11,16 +11,16 @@ Queries and mutations on this API reflect possible operations one may need to pe
 * <code>group(id: ID): Group</code>
 * <code>addGroup(name: String): Group</code>
 * <code>addNewWordToGroup(
-word: String
-meaning: String
+word: String,
+meaning: String,
 group: ID
 ): Word</code>
 * <code>removeGroup(id: ID): Group</code>
 * <code>removeWordFromGroup(id: ID): Group</code>
 * <code>editWord(
-id: ID
-word: String
-meaning: String
+id: ID,
+word: String,
+meaning: String,
 group: ID
 ): Word</code>
-* <code>editGroupName(id: IDname: String): Group</code>
+* <code>editGroupName(id: ID, name: String): Group</code>
